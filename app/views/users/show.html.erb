@@ -1,0 +1,15 @@
+<h1>Users profile</h1>
+<div class="container">
+  <div class="row">
+    <div>
+      <% if @user.avatar.attached? %>
+        <%= image_tag(@user.avatar, style:"width:200px") %>
+      <% end %>
+    </div>
+    <h2>Name: <%= @user.name %></h2>
+    <h3>Email: <%= @user.email %></h3>
+    <h3>Address: <%= @user.address %></h3>
+    <h4>Admin: <%= @user.admin %></h4>
+  </div>   
+  <%= link_to "Back", users_path, class:"btn btn-secondary" %>
+</div>
