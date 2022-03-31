@@ -1,0 +1,33 @@
+<h1>Catogories#index</h1>
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <th>Stt</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <% @categories.each_with_index do |category, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= link_to category.name, products_path(:cate => category.id) %></td>
+            <td><%= category.description %></td>
+            <td>
+              <%= link_to "Show", products_path(:cate => category.id), class:"btn btn-primary" %>
+              <% if current_user.admin %>
+                <%= link_to "Edit", edit_category_path(category), class:"btn btn-secondary" %>
+                <%= link_to "Destroy", category, method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger"%>
+              <% end %>
+            </td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% if current_user.admin %>
+    <%= link_to "Create Category", new_category_path, class:"btn btn-primary mt-3" %>
+  <% end %>
+</div>
