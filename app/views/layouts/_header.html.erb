@@ -43,7 +43,10 @@
               <a class="nav-link" href="<%= new_user_session_path %>">Sign in</a>
             </li>
           <% end %>
-          
+          <form class="d-flex" action="search">
+            <input class="form-control me-2" name="q" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
         </ul>
       </div>
     </div>
