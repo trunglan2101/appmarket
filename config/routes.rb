@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
   root 'static#home'
+  get "search", to: "products#search"
 end
