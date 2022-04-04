@@ -2,20 +2,22 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:show, :edit, :new, :update]
   PER_PAGE = 2
   def index
-    # @categories = Category.all
+    @categories = Category.all
     
-    # cate = params[:cate]
+    cate = params[:cate]
 
-    # if !cate.nil?
-    #   @products = Product.where(:category_id => cate)
+    if !cate.nil?
+      @products = Product.where(:category_id => cate).page(params[:page])
 
-    # else
-    #   @products = Product.paginate(page: params[:page],per_page: PER_PAGE).order("created_at desc")
+    else
+      @products = Product.page(params[:page]).order("created_at desc")
 
-    # end
+    end
 
-    @q = Product.ransack(params[:q])
-    @products = @q.result(distinct: true)
+    # @q = Product.ransack(params[:q])
+    # @products = @q.result(distinct: true)
+    #  @q = Product.ransack(params[:q]) 
+    # @products = @q.result.page(params[:page])
   end
 
   # def search

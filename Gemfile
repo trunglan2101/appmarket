@@ -60,3 +60,4 @@ gem 'devise-bootstrapped'
 gem 'will_paginate'
 gem 'image_processing'
 gem 'ransack'
+gem "kaminari"
