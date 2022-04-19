@@ -19,30 +19,36 @@
     </div>
     <div class="col-md-10 mt-3">
       <div class="row">
-          <% @products.each do |product| %>
-            <div class="col-md-3 col-sm-6 col-xs-12 mt-3">
-              <div class="card edit_card">
-                <div class="card-body text-center">
-                  <%= link_to image_tag(product.image, style:"width:200px"), product %>
-                  <p><%= product.name %></p>
-                  <p><%= product.description.truncate_words(5) %></p>
-                  <p><%= product.price %></p>
-                  <div class="actions">
-                    <%= link_to "View", product_path(product.id), class:"btn btn-primary" %>
-                    <% if current_user.admin %>
-                      <%= link_to "Edit", edit_product_path(product), class:"btn btn-secondary" %>
-                      <%= link_to "Delete", product_path(product.id), method: :delete, class:"btn btn-danger", data: {confirm:"You sure?"} %>
-                    <% end %>
-                  </div>
+        <% @products.each do |product| %>
+          <div class="col-md-3 col-sm-6 col-xs-12 mt-3">
+            <div class="card edit_card">
+              <div class="card-body text-center">
+                <%= link_to image_tag(product.image, style:"width:200px"), product %>
+                <p><%= product.name %></p>
+                <p><%= product.description.truncate_words(5) %></p>
+                <p><%= product.price %></p>
+                <div class="actions">
+                  <%= link_to "View", product_path(product.id), class:"btn btn-primary" %>
+                  <% if current_user.admin %>
+                    <%= link_to "Edit", edit_product_path(product), class:"btn btn-secondary" %>
+                    <%= link_to "Delete", product_path(product.id), method: :delete, class:"btn btn-danger", data: {confirm:"You sure?"} %>
+                  <% end %>
+                  <% if @cart.include?(product) %>
+                    <%= link_to "Remove from Cart", remove_from_cart_path(product), method: :delete, class:"btn btn-dark mt-2" %>
+                  <% else %>
+                    <%= link_to "Add to Cart", add_to_cart_path(product),method: :post, class:"btn btn-dark mt-2" %>
+                    
+                  <% end %>
                 </div>
               </div>
             </div>
-          <% end %>      
+          </div>
+        <% end %>      
+      </div>
+      <div class="mt-4 d-flex justify-content-center">
+        <%= paginate @products %> 
       </div>
     </div>
-   
   </div>
 </div>
-<div class="container">
-  <%= paginate @products %> 
-</div>
+

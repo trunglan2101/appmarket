@@ -57,7 +57,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'devise-bootstrapped'
-gem 'will_paginate'
 gem 'image_processing'
 gem 'ransack'
 gem "kaminari"
