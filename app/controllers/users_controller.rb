@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
   PER_PAGE = 2
   def index
+    @q = User.ransack(params[:q])
     page = params[:page].nil? ? 1 : params[:page].to_i
-    @paginate = (page - 1)*PER_PAGE
-    @users = User.paginate(page: params[:page], per_page: PER_PAGE).order("created_at desc")
+    @paginate = (page - 1) * PER_PAGE
+    # @users = User.paginate(page: params[:page], per_page: PER_PAGE).order("created_at desc")
+    @users = @q.result.page(params[:page])
   end
 
   def show

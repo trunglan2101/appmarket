@@ -1,11 +1,16 @@
-<h1>Products#show</h1>
-<h3> Name: <%= @product.name %></h3>
-<h3> Description: <%= @product.description %></h3>
-<h3> Price: <%= @product.price %></h3>
-<h2>Category: <%= @product.category.name %></h2>
-<%= link_to "Back", products_path, class:"btn btn-secondary" %>
-<% if current_user.admin%>
-  <%= link_to "Edit", edit_product_path(@product), class:"btn btn-primary" %>
-  <%= link_to "Delete", @product, method: :delete, class:"btn btn-danger"%>
-  
-<% end %>
+<div class="container">
+  <div class="text-center">
+    <h1>Thông tin sản phẩm</h1>
+    <hr>
+    <h3><%= image_tag(@product.image) %></h3>
+    <h3> Name: <%= @product.name %></h3>
+    <h3> Description: <%= @product.description %></h3>
+    <h3> Price: <%= @product.price %></h3>
+    <h2>Category: <%= @product.category.name %></h2>
+    <%= link_to "Back", products_path, class:"btn btn-secondary mt-3" %>
+    <% if current_user.admin%>
+      <%= link_to "Edit", edit_product_path(@product), class:"btn btn-primary mt-3" %>
+      <%= link_to "Delete", @product, method: :delete, class:"btn btn-danger mt-3"%>
+    <% end %>
+  </div>
+</div>

@@ -1,11 +1,11 @@
-<h1>Users#index</h1>
+<h1 class="text-center">Users List</h1>
 <div class="container">
   <div class="row">
     <table class="table table-success table-striped">
       <thead>
         <th>Stt</th>
         <th>Avatar</th>
-        <th>Name</th>
+        <th><%=sort_link(@q, :name, "Name", default_order: :asc)%></th>
         <th>Email</th>
         <th>Admin</th>
         <th>Action</th>
@@ -31,4 +31,5 @@
     </table>
   </div>
 </div>
-<%= will_paginate @users %>
+<%# <%= will_paginate @users %>
+<%= paginate @users %>

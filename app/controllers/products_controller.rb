@@ -1,27 +1,14 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :edit, :new, :update]
-  PER_PAGE = 2
+  before_action :authenticate_user!, only: [:show, :index, :edit, :new, :update]
+  
   def index
-    # @categories = Category.all
+    @categories = Category.all
     
-    # cate = params[:cate]
-
-    # if !cate.nil?
-    #   @products = Product.where(:category_id => cate)
-
-    # else
-    #   @products = Product.paginate(page: params[:page],per_page: PER_PAGE).order("created_at desc")
-
-    # end
-
+    cate = params[:cate]
     @q = Product.ransack(params[:q])
-    @products = @q.result(distinct: true)
+    @products = @q.result(distinct: true).page(params[:page])
+    @products = @products.where(category_id: cate) if cate.present?
   end
-
-  # def search
-  #   @products = Product.where("name LIKE ?", "%" + params[:q] + "%")
-  #   # binding.pry
-  # end
 
   def show
     @product = Product.find(params[:id])
@@ -56,6 +43,18 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
+    redirect_to products_path
+  end
+
+  def add_to_cart
+    id = params[:id].to_i
+    session[:cart] << id unless session[:cart].include?(id)
+    redirect_to products_path
+  end
+
+  def remove_from_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
     redirect_to products_path
   end
 
