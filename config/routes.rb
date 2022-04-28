@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update]
   resources :categories
   resources :products
-  root 'products#index'
+  resources :carts
+  resources :cart_items
+  root 'categories#index'
   get "search", to: "products#search"
 
   post "products/add_to_cart/:id", to: "products#add_to_cart", as: "add_to_cart"

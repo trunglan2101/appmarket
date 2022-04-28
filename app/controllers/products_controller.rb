@@ -3,11 +3,12 @@ class ProductsController < ApplicationController
   
   def index
     @categories = Category.all
-    
     cate = params[:cate]
     @q = Product.ransack(params[:q])
     @products = @q.result(distinct: true).page(params[:page])
     @products = @products.where(category_id: cate) if cate.present?
+    @cart_item = CartItem.new
+    @cart = Cart.new
   end
 
   def show
@@ -46,17 +47,17 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-  def add_to_cart
-    id = params[:id].to_i
-    session[:cart] << id unless session[:cart].include?(id)
-    redirect_to products_path
-  end
+  # def add_to_cart
+  #   id = params[:id].to_i
+  #   session[:cart] << id unless session[:cart].include?(id)
+  #   redirect_to products_path
+  # end
 
-  def remove_from_cart
-    id = params[:id].to_i
-    session[:cart].delete(id)
-    redirect_to products_path
-  end
+  # def remove_from_cart
+  #   id = params[:id].to_i
+  #   session[:cart].delete(id)
+  #   redirect_to products_path
+  # end
 
   private
   def product_params

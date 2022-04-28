@@ -33,11 +33,12 @@
                     <%= link_to "Edit", edit_product_path(product), class:"btn btn-secondary" %>
                     <%= link_to "Delete", product_path(product.id), method: :delete, class:"btn btn-danger", data: {confirm:"You sure?"} %>
                   <% end %>
-                  <% if @cart.include?(product) %>
-                    <%= link_to "Remove from Cart", remove_from_cart_path(product), method: :delete, class:"btn btn-dark mt-2" %>
-                  <% else %>
-                    <%= link_to "Add to Cart", add_to_cart_path(product),method: :post, class:"btn btn-dark mt-2" %>
-                    
+                  <%= form_for @cart_item  do |f| %>
+                    <%= f.hidden_field :product_id, value: product.id %>
+                    <%= f.hidden_field :cart_id, value: Cart.new(user_id: current_user.id) %>
+                    <%= f.hidden_field :quantity %>
+                    <%= f.hidden_field :total, value: 0%>
+                    <%= f.submit "Add cart" %>
                   <% end %>
                 </div>
               </div>

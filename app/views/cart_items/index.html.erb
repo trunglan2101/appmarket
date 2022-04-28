@@ -1,0 +1,29 @@
+<h1> Giỏ hàng </h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <th>Image</th>
+      <th>Name</th> 
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th>Action</th>
+      <th>product_id</th>
+      <th>Cart_id</th>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= image_tag(cart_item.product.image, style:"width:30px") %></td>
+          <td><%= cart_item.product.name %></td>
+          <td><%= cart_item.product.price %></td>
+          <td><%= cart_item.quantity %></td>
+          <td><%= cart_item.quantity * cart_item.product.price %></td>
+          <td><%= link_to "Delete", cart_item, method: :delete, class:"btn btn-danger" %></td>
+        <td><%= cart_item.product_id %></td>
+        <td><%= cart_item.cart_id %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
