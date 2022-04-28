@@ -14,12 +14,6 @@
     <%= render "layouts/header" %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div>
-      <h2>Shopping cart</h2>
-      <% @cart.each do |cart| %>
-        <%= cart.name %>
-      <% end %>
-    </div>
     <%= yield %>
   </body>
 </html>
