@@ -1,11 +1,12 @@
-<h1> Giỏ hàng </h1>
 <div class="container">
+  <h1> Giỏ hàng </h1>
   <table class="table">
     <thead>
       <th>Image</th>
       <th>Name</th> 
       <th>Price</th>
       <th>Quantity</th>
+      <th>Q</th>
       <th>Total</th>
       <th>Action</th>
       <th>product_id</th>
@@ -18,7 +19,19 @@
           <td><%= cart_item.product.name %></td>
           <td><%= cart_item.product.price %></td>
           <td><%= cart_item.quantity %></td>
-          <td><%= cart_item.quantity * cart_item.product.price %></td>
+
+
+        <td>
+        
+         <%= form_for cart_item do |f| %>
+          <%= f.number_field :quantity, min:0  %>
+          submit
+         <% end %>
+        
+        </td>
+
+
+          <td><%= cart_item.total %></td>
           <td><%= link_to "Delete", cart_item, method: :delete, class:"btn btn-danger" %></td>
         <td><%= cart_item.product_id %></td>
         <td><%= cart_item.cart_id %></td>
@@ -26,4 +39,5 @@
       <% end %>
     </tbody>
   </table>
+  h1
 </div>

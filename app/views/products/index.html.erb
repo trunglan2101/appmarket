@@ -35,9 +35,9 @@
                   <% end %>
                   <%= form_for @cart_item  do |f| %>
                     <%= f.hidden_field :product_id, value: product.id %>
-                    <%= f.hidden_field :cart_id, value: Cart.new(user_id: current_user.id) %>
-                    <%= f.hidden_field :quantity %>
-                    <%= f.hidden_field :total, value: 0%>
+                    <%= f.hidden_field :cart_id, value: @cart.id %>
+                    <%= f.hidden_field :quantity, value: 1 %>
+                    <%= f.hidden_field :total, value: product.price * 1 %>
                     <%= f.submit "Add cart" %>
                   <% end %>
                 </div>
@@ -52,4 +52,3 @@
     </div>
   </div>
 </div>
-
