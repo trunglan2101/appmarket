@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-10 mt-3">
       <div class="row">
-        <% @products.each do |product| %>
+        <% @products.each do |product| %> 
           <div class="col-md-3 col-sm-6 col-xs-12 mt-3">
             <div class="card edit_card">
               <div class="card-body text-center">
@@ -38,7 +38,7 @@
                     <%= f.hidden_field :cart_id, value: @cart.id %>
                     <%= f.hidden_field :quantity, value: 1 %>
                     <%= f.hidden_field :total, value: product.price * 1 %>
-                    <%= f.submit "Add cart" %>
+                    <%= f.submit "Add cart", class:"btn btn-success mt-2" %>
                   <% end %>
                 </div>
               </div>
@@ -50,5 +50,5 @@
         <%= paginate @products %> 
       </div>
     </div>
-  </div>
+  </div> 
 </div>

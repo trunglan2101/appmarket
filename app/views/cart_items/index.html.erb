@@ -1,43 +1,34 @@
 <div class="container">
-  <h1> Giỏ hàng </h1>
+  <h1 style="text-align:center"> Giỏ hàng </h1>
   <table class="table">
     <thead>
       <th>Image</th>
       <th>Name</th> 
       <th>Price</th>
       <th>Quantity</th>
-      <th>Q</th>
-      <th>Total</th>
+      <th>Total</th> 
       <th>Action</th>
-      <th>product_id</th>
-      <th>Cart_id</th>
     </thead>
     <tbody>
-      <% @cart_items.each do |cart_item| %>
-        <tr>
-          <td><%= image_tag(cart_item.product.image, style:"width:30px") %></td>
-          <td><%= cart_item.product.name %></td>
-          <td><%= cart_item.product.price %></td>
-          <td><%= cart_item.quantity %></td>
-
-
-        <td>
-        
-         <%= form_for cart_item do |f| %>
-          <%= f.number_field :quantity, min:0  %>
-          submit
-         <% end %>
-        
-        </td>
-
-
-          <td><%= cart_item.total %></td>
-          <td><%= link_to "Delete", cart_item, method: :delete, class:"btn btn-danger" %></td>
-        <td><%= cart_item.product_id %></td>
-        <td><%= cart_item.cart_id %></td>
-        </tr>
+      <%= form_for @cart do |f| %>
+        <%= f.hidden_field :id %>
+        <%= f.fields_for :cart_items do |ff| %>
+          <tr>
+            <td><%= image_tag(ff.object.product.image, style:"width:30px") %></td>
+            <td><%= ff.object.product.name %></td>
+            <td><%= ff.object.product.price %></td>
+            <td>
+              <%= ff.number_field :quantity, min: 1, id:"btn-quantity"  %>
+            </td>
+            <td><%= ff.object.total %></td>
+            <td><%= link_to "Delete", ff.object, method: :delete, class:"btn btn-danger" %></td>
+          </tr>
+        <% end %>
+        <%= f.submit "Update" %>
       <% end %>
     </tbody>
   </table>
-  h1
+  <div>
+    <h2 class="text-right">Total price: <%= @cart.total_price %></h2>
+  </div>
 </div>
