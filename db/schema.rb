@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_06_080259) do
+ActiveRecord::Schema.define(version: 2022_05_09_044416) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2022_05_06_080259) do
     t.integer "cart_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "order_id"
   end
 
   create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -64,18 +63,26 @@ ActiveRecord::Schema.define(version: 2022_05_06_080259) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "order_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "address"
     t.string "phone"
+    t.text "note"
     t.string "product_name"
-    t.integer "price"
+    t.integer "product_price"
     t.integer "quantity"
     t.integer "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id"
+  end
+
+  create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
     t.integer "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "note"
+    t.integer "user_id"
   end
 
   create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

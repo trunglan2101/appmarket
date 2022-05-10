@@ -1,8 +1,10 @@
+
 class CartItemsController < ApplicationController
   before_action :find_cart, only: %i(index create)
 
   def index
     @cart_items = @cart.cart_items
+    
   end
 
   def create

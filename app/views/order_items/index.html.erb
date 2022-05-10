@@ -1,0 +1,29 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Note</th>
+      <th>Product_name</th>
+      <th>Product_price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </thead>
+      <% @order_items.each do |order_item| %>
+        <tr>
+          <td><%= order_item.name %></td>
+          <td><%= order_item.address %></td>
+          <td><%= order_item.phone %></td>
+          <td><%= order_item.note %></td>
+          <td><%= order_item.product_name %></td>
+          <td><%= order_item.product_price %></td>
+          <td><%= order_item.quantity %></td>
+          <td><%= order_item.total %></td>
+        </tr>
+      <% end %>
+    <tbody>
+    
+    </tbody>
+  </table>
+</div>

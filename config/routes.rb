@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :products
   resources :carts
   resources :cart_items
+  resources :order_items
   resources :orders
   root 'categories#index'
   get "search", to: "products#search"

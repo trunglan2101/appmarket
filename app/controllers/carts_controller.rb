@@ -30,6 +30,12 @@ class CartsController < ApplicationController
   def show
   end
 
+  def destroy
+    @cart = current_user.cart
+    @cart.destroy
+    redirect_to products_path
+  end
+
   private
   
   def cart_params

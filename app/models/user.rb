@@ -7,4 +7,5 @@ class User < ApplicationRecord
   paginates_per 1
 
   has_one :cart
+  has_many :orders
 end
