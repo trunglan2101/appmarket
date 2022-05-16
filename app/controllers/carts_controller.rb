@@ -4,7 +4,6 @@ class CartsController < ApplicationController
   end
 
   def new
-    @cart = Cart.new
   end
 
   def update
