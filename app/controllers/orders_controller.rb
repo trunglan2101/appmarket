@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
   before_action :find_cart
+  def index
+    @orders = Order.all
+  end
   def new
     if @cart.cart_items.empty?
       redirect_to products_path, notice:"Cart is empty!!!1"
@@ -12,7 +15,7 @@ class OrdersController < ApplicationController
   def create
 
     @order = Order.new(order_params)
-    @order.add_order_items_from_cart(find_cart)
+    # @order.add_order_items_from_cart(find_cart)
     if @order.save
       
       @order.update total_price: @cart.cart_items.sum(:total)

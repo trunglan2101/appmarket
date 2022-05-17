@@ -1,0 +1,23 @@
+<h1 class="d-flex justify-content-center">Orders list</h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Note</th>
+      <th>Total_price</th>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.name %></td>
+          <td><%= order.address %></td>
+          <td><%= order.phone %></td>
+          <td><%= order.note %></td>
+          <td><%= order.total_price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>      
+</div>

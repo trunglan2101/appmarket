@@ -1,7 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  image: MyString
   product_name: MyString
   product_price: 1
   quantity: 1
@@ -9,7 +8,6 @@ one:
   order_id: 1
 
 two:
-  image: MyString
   product_name: MyString
   product_price: 1
   quantity: 1
