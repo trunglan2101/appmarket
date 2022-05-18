@@ -2,7 +2,10 @@
   <h1 class="text-center">All Products</h1>
   <div class="row">
     <div class="col-md-9"><%= render "products/search_form" %></div>
-    <div class="col-md-3 mr-0"><%= link_to "Create Product", new_product_path, class:"btn btn-primary" %></div>
+    <div class="col-md-3 mr-0">
+      <%= link_to "Create Product", new_product_path, class:"btn btn-primary" %>
+      <%= link_to "Import", "#", class:"btn btn-primary" %>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-2 mt-4 justify-content-right">

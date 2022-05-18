@@ -1,0 +1,2 @@
+class ProductCsv < ApplicationRecord
+end

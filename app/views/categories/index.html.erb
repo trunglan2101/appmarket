@@ -29,5 +29,9 @@
   </div>
   <% if current_user.admin %>
     <%= link_to "Create Category", new_category_path, class:"btn btn-primary mt-3" %>
+    <%= form_for :category, url: {action: :import, controller: :categories} do |f| %>
+      <%= f.file_field :file %>
+      <%= f.submit "Import", class:"btn btn-dark" %>
+    <% end %>
   <% end %>
 </div>

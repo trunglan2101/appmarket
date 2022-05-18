@@ -9,15 +9,18 @@ class OrdersController < ApplicationController
     end
 
     @order = Order.new
-    @order_item = OrderItem.new
+    # @order_item = OrderItem.new
   end
 
   def create
 
     @order = Order.new(order_params)
-    # @order.add_order_items_from_cart(find_cart)
+    @order_item = @order.order_items.new
+    @cart.cart_items.each do |cart|
+      @order_item.update  product_name: cart.product.name, product_price: cart.product.price, quantity: cart.quantity, total: cart.total, order_id: @order.id
+      @order_item.save!
+    end
     if @order.save
-      
       @order.update total_price: @cart.cart_items.sum(:total)
       @cart.destroy
       redirect_to root_path, notice:"order thanh cong"
@@ -33,16 +36,6 @@ class OrdersController < ApplicationController
 
   
   private
-  def add_order_items_from_cart(cart)
-    @order_item = OrderItem.new
-    cart.cart_items.each do |c|
-      @order_item.product_name = c.product.name
-      @order_item.product_price = c.product.price
-      @order_item.quantity = c.quantity
-      @order_item.total = c.total
-      @order_item.order_id = Order.id
-    end
-  end
   
   def order_params
     params.require(:order).permit(:name, :address, :phone, :note, :total_price, :user_id)

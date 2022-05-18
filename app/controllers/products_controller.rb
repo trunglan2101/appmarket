@@ -30,6 +30,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def import 
+    
+  end
+
   def edit
     @product = Product.find(params[:id])
   end

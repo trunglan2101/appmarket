@@ -21,6 +21,11 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def import
+    Category.import(params[:file])
+    redirect_to root_path
+  end
+
   def edit
     @category = Category.find(params[:id])
   end
