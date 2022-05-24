@@ -21,11 +21,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def import
-    Category.import(params[:file])
-    redirect_to root_path
-  end
-
   def edit
     @category = Category.find(params[:id])
   end
@@ -44,7 +39,14 @@ class CategoriesController < ApplicationController
     @category.destroy
     redirect_to categories_path
   end
+
+  def import
+    Category.import(params[:file])
+    redirect_to categories_path, notice: "Import category success!"
+  end
+
   private
+  
   def category_params
     params.require(:category).permit(:name, :description)
   end

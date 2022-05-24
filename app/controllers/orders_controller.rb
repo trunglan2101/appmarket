@@ -18,7 +18,6 @@ class OrdersController < ApplicationController
     @order_item = @order.order_items.new
     @cart.cart_items.each do |cart|
       @order_item.update  product_name: cart.product.name, product_price: cart.product.price, quantity: cart.quantity, total: cart.total, order_id: @order.id
-      @order_item.save!
     end
     if @order.save
       @order.update total_price: @cart.cart_items.sum(:total)
