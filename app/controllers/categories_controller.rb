@@ -41,8 +41,16 @@ class CategoriesController < ApplicationController
   end
 
   def import
-    Category.import(params[:file])
-    redirect_to categories_path, notice: "Import category success!"
+    ActiveRecord::Base.transaction do
+      file = params[:category][:file]
+      CSV.foreach(file.path, headers: true) do |row|
+        # Category.new
+        Category.create!(row.to_hash)
+      end
+      redirect_to categories_path, notice: "Import category success!"
+    end
+    rescue Exception => error
+      redirect_to categories_path, notice: "Import category  fail!"
   end
 
   private

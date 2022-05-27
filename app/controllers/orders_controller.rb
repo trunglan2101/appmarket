@@ -1,5 +1,10 @@
 class OrdersController < ApplicationController
   before_action :find_cart
+
+  def show
+    @order = Order.find(params[:id])
+  end
+  
   def index
     @orders = Order.all
   end
