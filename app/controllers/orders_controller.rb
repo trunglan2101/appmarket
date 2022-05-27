@@ -18,10 +18,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-
     @order = Order.new(order_params)
-    @order_item = @order.order_items.new
+
     @cart.cart_items.each do |cart|
+      @order_item = @order.order_items.new
       @order_item.update  product_name: cart.product.name, product_price: cart.product.price, quantity: cart.quantity, total: cart.total, order_id: @order.id
     end
     if @order.save
